@@ -9,7 +9,6 @@ from rest_framework import filters
 from rest_framework.authtoken.serializers import AuthTokenSerializer
 from rest_framework.authtoken.views import ObtainAuthToken
 
-
 from . import serializers
 from . import models
 from . import permissions
@@ -110,6 +109,8 @@ class HelloViewSet(viewsets.ViewSet):
 
         return Response({'http_method': 'DELETE'})
 
+
+
 class UserProfileViewSet(viewsets.ModelViewSet):
     """Handles creating, creating and updating profiles."""
 
@@ -122,10 +123,11 @@ class UserProfileViewSet(viewsets.ModelViewSet):
 
 
 class LoginViewSet(viewsets.ViewSet):
-    """Checks email and the password and returns an auth token."""
+    """Check email and password and return an auth token."""
+
     serializer_class = AuthTokenSerializer
 
     def create(self, request):
-        """Use the ObtainaAuthToken APIView to the validate and create a token."""
+        """Use the ObtainAuthToken APIView to validate and create a token."""
 
         return ObtainAuthToken().post(request)
